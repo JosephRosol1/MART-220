@@ -6,12 +6,24 @@ var b = 200;
 let c = 150;
 let goLeft = false;
 
+var img;
+var Bailey;
+var Bailey1;
+function preload() {
+  img = loadImage("assests/images/Glitched Artwork_Rosol.jpg");
+  Bailey = loadImage("assests/images/Bailey2_Rosol.jpg");
+  Bailey1 = loadImage("assests/images/Bailey3_Rosol.jpg");
+}
+
 function setup() {
   createCanvas(400, 400);
 }
 
 function draw() {
   background(220);
+  image(img, 150,30);
+  image(Bailey, 85,105);
+  image(Bailey1, 68,87);
   fill(219, 219, 101);
   triangle(30, 100, 300, 100, 160, 350);
   fill(255,0,0);
