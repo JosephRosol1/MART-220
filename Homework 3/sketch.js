@@ -13,7 +13,7 @@ var Sunset = 70;
 function preload() {
   img = loadImage("Assets/Images/Glitched Artwork_Rosol.jpg");
   Bailey = loadImage("Assets/Images/Bailey2_Rosol.jpg");
-  Sunset = loadImage("Assets/Images/Sunset.jpg");
+  Sunset = loadImage("Assets/Images/sunset.jpg");
   myFont = loadFont("Assets/Oswald/Oswald.ttf");
 }
 
