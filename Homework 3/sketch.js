@@ -5,25 +5,28 @@ var a = 120;
 var b = 200;
 let c = 150;
 let goLeft = false;
+let MyFont;
 
-var img;
-var Bailey;
-var Bailey1;
+var img = 85;
+var Bailey = 27;
+var Sunset = 70;
 function preload() {
-  img = loadImage("assests/images/Glitched Artwork_Rosol.jpg");
-  Bailey = loadImage("assests/images/Bailey2_Rosol.jpg");
-  Bailey1 = loadImage("assests/images/Bailey3_Rosol.jpg");
+  img = loadImage("Assets/Images/Glitched Artwork_Rosol.jpg");
+  Bailey = loadImage("Assets/Images/Bailey2_Rosol.jpg");
+  Sunset = loadImage("Assets/Images/Sunset.jpg");
+  myFont = loadFont("Assets/Oswald/Oswald.ttf");
 }
 
 function setup() {
   createCanvas(400, 400);
+  setInterval(moveSunset, 900);
 }
 
 function draw() {
   background(220);
   image(img, 150,30);
   image(Bailey, 85,105);
-  image(Bailey1, 68,87);
+  image(Sunset, 68,87);
   fill(219, 219, 101);
   triangle(30, 100, 300, 100, 160, 350);
   fill(255,0,0);
@@ -62,6 +65,7 @@ function draw() {
   square(a,z,20);
   square(x,y,20);
   fill(0,0,0);
+  textFont(myFont);
   textSize(20);
   text('Joseph Rosol',260,370);
   textSize(30);
@@ -109,4 +113,13 @@ function keyPressed() {
     {
       b-=5
     }
+}
+
+function moveSunset()
+{
+  Sunset+=10;
+  if(Sunset >= 75)
+  {
+    Sunset= 70;
+  }
 }
