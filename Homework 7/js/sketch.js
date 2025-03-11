@@ -1,7 +1,7 @@
 var animation = [];
 var slideAnimation = [];
 var i = 0;
-var temple;
+var myTemple;
 var circle1Array = [];
 var x = 100;
 var y = 100;
@@ -18,45 +18,19 @@ var PowerUp;
 var PowerDown;
 var countdowntimer;
 var foodArray;
+var flipX = false;
 
 
 // Preload function runs before setup, used to load external assets
 function preload() {
-    let runLoaded = false;  // Track if run.txt is loaded
-    let slideLoaded = false;// Track if slide.txt is loaded
+    //let runLoaded = false;  // Track if run.txt is loaded
+    //let slideLoaded = false;// Track if slide.txt is loaded
     soundFormats("mp3");
     backgroundmusic = loadSound("sounds/background sound.mp3");
     powerUp = loadSound("sounds/powerup.mp3");
     powerDown = loadSound("sounds/powerdown.mp3");
-
-    // Load run.txt and update runStrings when done
-    runStrings = loadStrings("data/run.txt", 
-        (result) => {
-            runStrings = result; // Assign the loaded array to the global variable
-            //console.log("run.txt contents:", result); // Log contents for debugging
-            runLoaded = true;   // Mark run.txt as loaded
-            checkLoaded();      // Check if both files are ready
-        }, 
-        () => console.error("Failed to load run.txt") // Error handler
-    );
-
-    // Load slide.txt and update slideStrings when done
-    slideStrings = loadStrings("data/slide.txt", 
-        (result) => {
-            slideStrings = result; // Assign the loaded array to the global variable
-            //console.log("slide.txt contents:", result); // Log contents for debugging
-            slideLoaded = true; // Mark slide.txt as loaded
-            checkLoaded();      // Check if both files are ready
-        }, 
-        () => console.error("Failed to load slide.txt") // Error handler
-    );
-
-    // Load initial Templerun run animations directly (not from run.txt)
-    for (var j = 0; j < 10; j++) {
-        let path = "Assets/Images/templerun/Run__00" + j + ".png"; // Construct image path
-        temple = new Templerun(path); // Create Templerun object with image
-        animation.push(temple);       // Add to animation array
-    }
+runStrings = loadStrings('Data/run.txt');
+slideStrings = loadStrings('Data/slide.txt');
 
     // Helper function to set loaded flag when both text files are ready
     function checkLoaded() {
@@ -70,6 +44,14 @@ function preload() {
 function setup() {
     let myCanvas = createCanvas(1000, 1000); // Create a 1000x1000 pixel canvas
     setInterval (countdowntimer, 1000)
+    // Load initial Templerun run animations directly (not from run.txt)
+    for (var j = 0; j < 10; j++) {
+        let path = "Assets/Images/templerun/Run__00" + j + ".png"; // Construct image path
+        myTemple = new character(runStrings[j], x, y); // Create Templerun object with image
+        animation.push(myTemple);
+        myTemple = new character(slideStrings[j], x, y); // Create Templerun object with image
+        animation.push(myTemple);     // Add to animation array
+    }
 
     // Check if text files loaded successfully
     if (!loaded) {
@@ -154,11 +136,13 @@ function draw() {
         for (let j = 0; j < animation.length; j++) {
             animation[j].x = x;
             animation[j].y = y;
+            animation[j].flipX = flipX;
         }
         // Update position of all slide animation frames
         for (let j = 0; j < slideAnimation.length; j++) {
             slideAnimation[j].x = x;
             slideAnimation[j].y = y;
+            slideAnimation[j].flipX = flipX;
         }
 
         // Check for collisions with circles, remove them if hit

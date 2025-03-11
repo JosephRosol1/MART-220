@@ -1,4 +1,4 @@
-class Templerun { //capitalize classes
+class /*Templerun { //capitalize classes
     constructor(path) {
         this.path = path;
         this.myImage = loadImage(this.path)
@@ -9,6 +9,7 @@ class Templerun { //capitalize classes
         this.y = 100;
         this.imageWidth = 20;
         this.imageHeight = 100;
+        this.flipX = false;
     }
 
     draw(x, y) {
@@ -25,4 +26,4 @@ class Templerun { //capitalize classes
             this.y + this.imageHeight > y2
         );
     }
-}
+}*/
