@@ -19,7 +19,7 @@ class Character {
             image(this.myImage, this.x, this.y, 40, 60);
         }
         else{
-            image(this.imageHeight, this.x, this.y, 50, 75);
+            image(this.imageHeight, this.x, this.y, 40, 60);
         }
         pop();
     }   
